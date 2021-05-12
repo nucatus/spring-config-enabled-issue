@@ -23,3 +23,7 @@ and then with the `dev` profile selected, where the cloud config was explicitly 
 ```shell
 SPRING_PROFILES_ACTIVE=dev gradle bootRun
 ```
+
+## 👊 How to fix
+
+A possible fix would be to check for the `spring.cloud.config.enabled` property in [`ConfigServerConfigDataLoader.java`](https://github.com/spring-cloud/spring-cloud-config/blob/1210effa445ba9f30004e34bde8262d35621cd9f/spring-cloud-config-client/src/main/java/org/springframework/cloud/config/client/ConfigServerConfigDataLoader.java#L77) before doing any logic, and simply return if the config client is disabled.
